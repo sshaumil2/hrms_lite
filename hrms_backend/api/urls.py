@@ -7,7 +7,8 @@ from .views import (
     employee_list,
     employee_update,
     mark_attendance,
-    present_days_per_employee
+    present_days_per_employee,
+    today_attendance
 )
 
 urlpatterns = [
@@ -16,8 +17,9 @@ urlpatterns = [
     path('employees/update/<str:pk>/', employee_update),
     path('employees/delete/<str:pk>/', employee_delete),
 
-    path('attendance/', mark_attendance),
-    path('attendance/<str:emp_id>/', employee_attendance),
+    path('attendance/create/', mark_attendance),
+    path('emp-attendance/<str:emp_id>/', employee_attendance),
+    path('attendance/list/', today_attendance),
 
     path('dashboard/', dashboard_summary),
 

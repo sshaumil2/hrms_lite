@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from mongoengine.errors import DoesNotExist
 from .models import Employee, Attendance
-from .serializer import EmployeeSerializer, AttendanceSerializer
+from .serializer import EmployeeSerializer, AttendanceSerializer, EmployeeTodayAttendanceSerializer
 from datetime import date
 
 
@@ -65,6 +65,12 @@ def mark_attendance(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
+
+@api_view(['GET'])
+def today_attendance(request):
+    employees = Employee.objects.all()
+    serializer = EmployeeTodayAttendanceSerializer(employees, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])

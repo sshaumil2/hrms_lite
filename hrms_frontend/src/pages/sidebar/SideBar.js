@@ -1,23 +1,6 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Icons from "../../myIcon/Icons";
+import { Link } from "react-router-dom";
 
 export default function SideBar({ isOpen, toggleSidebar }) {
-  const [isBlogManagementOpen, setIsBlogManagementOpen] = useState(false);
-  const [isSeoManagementOpen, setIsSeoManagementOpen] = useState(false);
-  const [iscaseManagementOpen, setIscaseManagementOpen] = useState(false);
-  const [isjobManagementOpen, setIsjobManagementOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const toggleBlogManagement = () => setIsBlogManagementOpen((prev) => !prev);
-  const toggleSeoManagement = () => setIsSeoManagementOpen((prev) => !prev);
-  const toggleCaseManagement = () => setIscaseManagementOpen((prev) => !prev);
-  const togglejobManagement = () => setIsjobManagementOpen((prev) => !prev);
-
-  const handleLogout = () => {
-    localStorage.removeItem("TokenBigBin");
-    navigate("/login");
-  };
 
   return (
     <>
@@ -37,30 +20,23 @@ export default function SideBar({ isOpen, toggleSidebar }) {
               <Link to="/"><span><img src="/assets/dashboard.webp" alt="icon" className="img-responsive" />Dashboard</span></Link>
             </li>
 
-            <li className={`innertab ${isBlogManagementOpen ? "openlist" : ""}`} onClick={toggleBlogManagement}>
-              <div><span><img src="/assets/blog-management.webp" alt="icon" className="img-responsive" /> Blog Management</span> <Icons name="arrowDown" /></div>
-              <ul className={`nested-list ${isBlogManagementOpen ? "open" : "close"}`}>
-                <li><Link to="blog">Blog</Link></li>
-                <li><Link to="category">Category</Link></li>
-                <li><Link to="author">Author</Link></li>
-              </ul>
+            <li>
+              <Link to="/employee"><span><img src="/assets/blog-management.webp" alt="icon" className="img-responsive" />Employees</span></Link>
             </li>
 
             <li>
-              <Link to="/contact"><span><img src="/assets/blog-management.webp" alt="icon" className="img-responsive" />Contact</span></Link>
+              <Link to="/attendance"><span><img src="/assets/blog-management.webp" alt="icon" className="img-responsive" />Attendance</span></Link>
             </li>
 
             <li>
-              <Link to="/business-contact"><span><img src="/assets/blog-management.webp" alt="icon" className="img-responsive" />Business Contact</span></Link>
+              <Link to="/present-days"><span><img src="/assets/blog-management.webp" alt="icon" className="img-responsive" />Empoyees Present Days</span></Link>
             </li>
 
             <li>
-              <Link to="/seo"><span><img src="/assets/seo-management.webp" alt="icon" className="img-responsive" />SEO</span></Link>
-            </li> 
+              <Link to="/emp-attendance"><span><img src="/assets/blog-management.webp" alt="icon" className="img-responsive" />Empoyees Attendance</span></Link>
+            </li>
           </ul>
         </div>
-
-        <button onClick={handleLogout} className="default-btn logout-button">Logout<span></span></button>
       </div>
     </>
   );

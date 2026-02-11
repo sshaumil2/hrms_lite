@@ -1,39 +1,33 @@
-import Login from "../Login/Login";
 import { Route, Routes } from "react-router-dom";
 import AdminLayout from "../Router/AdminLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import AuthorListing from "../pages/Author/AuthorListing";
-import Category from "../pages/category/Category";
-import BlogListing from "../pages/blogs/BlogListing";
-import AddBlog from "../pages/blogs/AddBlog";
-import EditBlog from "../pages/blogs/EditBlog";
-import Contact from "../pages/Contact/Contact";
-import SeoListing from "../pages/Seo/SeoListing";
-import SeoCreate from "../pages/Seo/SeoCreate";
-import SeoEdit from "../pages/Seo/SeoEdit";
-import BusinessForm from "../pages/Contact/BusinessForm";
+import Employee from "../pages/employee/Employee";
+import EmployeeCreate from "../pages/employee/EmployeeCreate";
+import EmployeeEdit from "../pages/employee/EmployeeEdit";
+import Attendance from "../pages/attendance/Attendance";
+import AddAttendance from "../pages/attendance/AddAttendance";
+import PresentDays from "../pages/presentDays/PresentDays";
+import EmpAttendance from "../pages/empAttendance/EmpAttendance";
+import ShowRecords from "../pages/empAttendance/ShowRecords";
 
 export default function Router() {
   return (
     <>
       <Routes>
-        <Route path={"login"} element={<Login />} />
         <Route path="/" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
 
-          <Route path="author" element={<AuthorListing />} />
-          <Route path="category" element={<Category />} />
+          <Route path="employee" element={<Employee />} />
+          <Route path="add-employee" element={<EmployeeCreate />} />
+          <Route path="edit-employee/:emp_id" element={<EmployeeEdit />} />
 
-          <Route path="blog" element={<BlogListing />} />
-          <Route path="add-blog" element={<AddBlog />} />
-          <Route path="edit-blog/:blog_id" element={<EditBlog />} />
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="add-attendance" element={<AddAttendance />} />
 
-          <Route path="contact" element={<Contact />} />
-          <Route path="business-contact" element={<BusinessForm />} />
+          <Route path="present-days" element={<PresentDays />} />
 
-          <Route path="seo" element={<SeoListing />} />
-          <Route path="add-seo" element={<SeoCreate />} />
-          <Route path="edit-seo/:seo_id" element={<SeoEdit />} />
+          <Route path="emp-attendance" element={<EmpAttendance />} />
+          <Route path="emp-attendance/:att_id" element={<ShowRecords />} />
         </Route>
       </Routes>
     </>

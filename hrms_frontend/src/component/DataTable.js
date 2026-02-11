@@ -33,42 +33,43 @@ const formatValue = (body, value) => {
 
   const formattedFields = {
     createdAt: formatDate(value), // Format createdAt
-    date: formatDate(value), // Format updatedAt if needed
+    date: value, // Format updatedAt if needed
     source_url: <a href={value} target="_blank" rel="noreferrer">{value}</a>, // Render as a link
-    status: <span className={value === "1"? "status-btn-inactive" : "status-btn-active"}>{value === "1" ? "Disabled" : "Enabled"}</span>, // Render as a link
+    status: <span className={value === "A" ? "status-btn-inactive" : "status-btn-active"}>{value === "P" ? "Present" : "Absent"}</span>, // Render as a link
+    attendance_status: <span className={value === "P" ? "status-btn-active" : value === "A" ? "status-btn-inactive" : null}>{value === "P" ? "Present" : value === "A" ? "Absent" : value}</span>, // Render as a link
   };
 
   return formattedFields[body] || value; // Return formatted value or default
 };
 
-export default function DataTable({ data, tableHeader, tbody, editPath, onDelete, showAction = true,setModalShow, setId }) {
+export default function DataTable({ data, tableHeader, tbody, editPath, onDelete, showAction = true, setModalShow, setId, showRecord = false }) {
 
   useEffect(() => {
-  const initializeDataTable = () => {
-    const table = $("#example3").DataTable({
-      destroy: true,
-      paging: false,
-      pagingType: "full_numbers",
-      pageLength: 10,
-      processing: true,
-      dom: "Bfrtip",
-      buttons: ["copy", "csv", "excel", "print"],
-      initComplete: function () {
-        $(".dt-search input").attr("placeholder", "Search Here");
-      },
-      drawCallback: function () {
-        // Move .dt-search outside (v2 search wrapper)
-        if ($(".dt-search").parent().attr("id") !== "datatable-search") {
-          $(".dt-search").appendTo("#datatable-search");
+    const initializeDataTable = () => {
+      const table = $("#example3").DataTable({
+        destroy: true,
+        paging: false,
+        pagingType: "full_numbers",
+        pageLength: 10,
+        processing: true,
+        dom: "Bfrtip",
+        buttons: ["copy", "csv", "excel", "print"],
+        initComplete: function () {
+          $(".dt-search input").attr("placeholder", "Search Here");
+        },
+        drawCallback: function () {
+          // Move .dt-search outside (v2 search wrapper)
+          if ($(".dt-search").parent().attr("id") !== "datatable-search") {
+            $(".dt-search").appendTo("#datatable-search");
+          }
         }
-      }
-    });
+      });
 
-    // Move buttons outside
-    table.buttons().container().appendTo("#datatable-buttons");
+      // Move buttons outside
+      table.buttons().container().appendTo("#datatable-buttons");
 
-    // Initial move of search
-    $(".dt-search").appendTo("#datatable-search");
+      // Initial move of search
+      $(".dt-search").appendTo("#datatable-search");
     };
 
     if (data && data.length > 0) {
@@ -84,51 +85,64 @@ export default function DataTable({ data, tableHeader, tbody, editPath, onDelete
 
   return (
     <>
-    <div className="datatable-control">
+      <div className="datatable-control">
         <div id="datatable-search"></div>
         <div id="datatable-buttons"></div>
-    </div>
+      </div>
 
-    <div className="table-responsive">
-      <table id="example3" className="my-data-table">
-        <thead>
-          <tr>
-            {/* head one static last static (middels are dynamic) */}
-            <th>S.No</th>
-            {tableHeader.map((header, index) => (
-              <th key={index}>{header}</th>
-            ))}
-            {showAction && <th>Action</th>}
-          </tr>
-        </thead>
-
-        <tbody>
-          {data?.map((item, rowIndex) => (
-            <tr key={rowIndex}>
-              {/* first row is static */}
-              <td>{rowIndex + 1}</td>
-              {tbody && tbody.map((body, colIndex) => (
-                <td key={colIndex}>{formatValue(body, item[body])}</td>
+      <div className="table-responsive">
+        <table id="example3" className="my-data-table">
+          <thead>
+            <tr>
+              {/* head one static last static (middels are dynamic) */}
+              <th>S.No</th>
+              {tableHeader.map((header, index) => (
+                <th key={index}>{header}</th>
               ))}
-              {/* last row static*/}
-              {showAction && (
-                <td>
-                  <div className="table-btn-group">
-                    {editPath? 
-                    ( <Link to={`/${editPath}/${item._id}`} className="edit-btn"><img src="/assets/admin-edit.webp" alt="edit" className="img-responsive" /></Link>
-                    ):(
-                      <Link onClick={() => {setModalShow(true); setId(item._id)}} className="edit-btn"><img src="/assets/admin-edit.webp" alt="edit" className="img-responsive" /></Link>
-                    )}
-                  
-                    {onDelete && <Link className="delete-btn" onClick={() => onDelete(item._id)}><img src="/assets/admin-delete.webp" alt="delete" className="img-responsive" /></Link>}
-                  </div>
-                </td>
-              )}
+              {showAction && <th>Action</th>}
+              {showRecord && <th>Action</th>}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+
+          <tbody>
+            {data?.map((item, rowIndex) => (
+              <tr key={rowIndex}>
+                {/* first row is static */}
+                <td>{rowIndex + 1}</td>
+                {tbody && tbody.map((body, colIndex) => (
+                  <td key={colIndex}>{formatValue(body, item[body])}</td>
+                ))}
+                {/* last row static*/}
+                {showAction && (
+                  <td>
+                    <div className="table-btn-group">
+                      {editPath ?
+                        (<Link to={`/${editPath}/${item.id}`} className="edit-btn"><img src="/assets/admin-edit.webp" alt="edit" className="img-responsive" /></Link>
+                        ) : (
+                          <Link onClick={() => { setModalShow(true); setId(item.id) }} className="edit-btn"><img src="/assets/admin-edit.webp" alt="edit" className="img-responsive" /></Link>
+                        )}
+
+                      {onDelete && <Link className="delete-btn" onClick={() => onDelete(item.id)}><img src="/assets/admin-delete.webp" alt="delete" className="img-responsive" /></Link>}
+                    </div>
+                  </td>
+                )}
+
+                {showRecord && (
+                  <td>
+                    <div className="table-btn-group">
+                      {editPath ?
+                        (<Link to={`/${editPath}/${item.id}`} style={{fontSize:"14px", color:"#7c1fcd", cursor:"pointer"}}>View Attendance Records</Link>
+                        ) : (
+                          <Link onClick={() => { setModalShow(true); setId(item.id) }} className="edit-btn"><img src="/assets/admin-edit.webp" alt="edit" className="img-responsive" /></Link>
+                        )}
+                    </div>
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

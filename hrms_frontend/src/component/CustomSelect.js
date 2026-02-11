@@ -68,13 +68,13 @@ const CustomSelect = ({
 
       let selectedOption = null;
 
-      if (typeof defaultValue === "object" && defaultValue._id) {
+      if (typeof defaultValue === "object" && defaultValue.id) {
         // if defaultValue is full object
-        selectedOption = options.find((opt) => opt._id === defaultValue._id);
+        selectedOption = options.find((opt) => opt._id === defaultValue.id);
       } else {
         // if defaultValue is id or array of ids
         const id = Array.isArray(defaultValue) ? defaultValue[0] : defaultValue;
-        selectedOption = options.find((opt) => opt._id === id);
+        selectedOption = options.find((opt) => opt.id === id);
       }
 
       setSelected(selectedOption || null);
@@ -85,21 +85,21 @@ const CustomSelect = ({
 
   const handleOptionClick = (option) => {
     if (multiple) {
-      const isAlreadySelected = selected.some((item) => item._id === option._id);
+      const isAlreadySelected = selected.some((item) => item.id === option.id);
       const updatedSelection = isAlreadySelected
-        ? selected.filter((item) => item._id !== option._id)
+        ? selected.filter((item) => item.id !== option.id)
         : [...selected, option];
 
       setSelected(updatedSelection);
 
-      const ids = updatedSelection.map((item) => item._id).join(",");
+      const ids = updatedSelection.map((item) => item.id).join(",");
       const fakeEvent = { target: { name, value: ids } }; // Include the name if provided
       onChange(fakeEvent);
     } else {
       setSelected(option);
       setIsOpen(false);
 
-      const fakeEvent = { target: { name, value: option._id } }; // Include the name if provided
+      const fakeEvent = { target: { name, value: option.id } }; // Include the name if provided
       onChange(fakeEvent);
     }
   };
@@ -116,9 +116,9 @@ const CustomSelect = ({
 
   const isSelected = (option) => {
     if (multiple) {
-      return selected.some((item) => item._id === option._id);
+      return selected.some((item) => item.id === option.id);
     }
-    return selected?._id === option._id;
+    return selected?.id === option.id;
   };
 
   return (
@@ -143,7 +143,7 @@ const CustomSelect = ({
             </span>
             {options.map((option) => (
               <span
-                key={option._id}
+                key={option.id}
                 className={`custom-option ${isSelected(option) ? "selected" : ""
                   }`}
                 onClick={() => handleOptionClick(option)}

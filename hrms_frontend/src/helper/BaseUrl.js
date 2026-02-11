@@ -1,3 +1,1 @@
-export const BaseUrl = "http://139.59.12.251:8007/";
-
-export const accessToken = localStorage.getItem("accessToken");
+export const BaseUrl = "http://127.0.0.1:8000/";

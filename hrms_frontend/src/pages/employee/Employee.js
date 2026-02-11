@@ -4,21 +4,21 @@ import ApiRequest from "../../helper/ApiRequest";
 import { ApiEndpoints } from "../../helper/ApiEndpoints"; 
 import DataTable from "../../component/DataTable";
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const seoListEndpoint = ApiEndpoints.seo.seoList;
-const seoDeleteEndpoint = ApiEndpoints.seo.seoDelete;
-const seoEditPath = "edit-seo";
-const tableHeader = ["Url", "Title", "Description"];
-const tbody = ["url", "title", "description"];
+const listEndpoint = ApiEndpoints.employee.List;
+const deleteEndpoint = ApiEndpoints.employee.Delete;
+const EditPath = "edit-employee";
+const tableHeader = ["employee id", "name", "department"];
+const tbody = ["employee_id", "name", "department"];
 
-export default function SeoListing() {
+export default function Employee() {
     const [data, setData] = useState([]);
   
     const dataFetch = async () => {
         try {
-            const response = await ApiRequest("GET", seoListEndpoint);
-            const result = response.seos;
-            setData(result);
+            const response = await ApiRequest("GET", listEndpoint);
+            setData(response);
     
         } catch (error) {
             console.log(error);
@@ -29,20 +29,20 @@ export default function SeoListing() {
         dataFetch();
     }, []);
 
-    const handleDelete = async (seo_id) => {
-      const payload = { seo_id };
+    const handleDelete = async (emp_id) => {
       try {
-        await ApiRequest("POST", seoDeleteEndpoint, payload);
+        await ApiRequest("DELETE", deleteEndpoint + emp_id +"/");
         dataFetch();
+        toast.success("employee deleted successfully")
       } catch (error) {
         console.log(error);
       }
     };
 
     const pagename = {
-      name: 'SEO Management',
+      name: 'Employee Management',
       user: 'Admin',
-      innerpage: 'SEO Management / SEO'
+      innerpage: 'Employee Management / Employee List'
     }
 
   return (
@@ -50,12 +50,12 @@ export default function SeoListing() {
      <AdminHeader pagename={pagename}/> 
 
      <div className="add-btn-section">
-        <Link className="admin-add-btn" to="/add-seo">Add +</Link>
+        <Link className="admin-add-btn" to="/add-employee">Add +</Link>
         <DataTable
           data={data}
           tableHeader={tableHeader}
           tbody={tbody}
-          editPath={seoEditPath}
+          editPath={EditPath}
           onDelete={handleDelete}
         />
       </div>
