@@ -1,7 +1,6 @@
 # HRMS Lite
 
-A full-stack HRMS (Human Resource Management System) built with Django + MongoDB (MongoEngine) for backend APIs and React.js for frontend.  
-Deployed using NginX, PM2 with ecosystem configuration for production-grade process management.
+A full-stack HRMS (Human Resource Management System) built with Django + MongoDB (MongoEngine) for backend APIs and React.js for frontend. Deployed using NginX, PM2 with ecosystem configuration for production-grade process management.
 
 ---
 
@@ -26,6 +25,7 @@ Deployed using NginX, PM2 with ecosystem configuration for production-grade proc
 
 ## Project Structure
 
+```
 hrms_lite/
 │
 ├── hrms_backend/
@@ -48,6 +48,7 @@ hrms_lite/
 
 ## Architecture
 
+```
 React Frontend  --->  Django REST API  --->  MongoDB  
         |                  |  
         |                  |  
