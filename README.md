@@ -44,7 +44,7 @@ hrms_lite/
 │
 └── README.md
 
----
+```
 
 ## Architecture
 
@@ -54,7 +54,7 @@ React Frontend  --->  Django REST API  --->  MongoDB
         |                  |  
         +------ CORS ------+
 
----
+```
 
 # Local Development Setup
 
