@@ -33,8 +33,7 @@ Features:
   - Print employee records
 
 Known Limitation:
-- After deleting an employee, a manual page refresh is required due to a DataTable state refresh issue.
-- All other operations function in real-time without refresh.
+- After deleting an employee, a manual page refresh is required due to a DataTable state refresh issue. The server is small so it can give empty fields sometimes. If you will feel this, please refresh once so that data can be captured. All other operations function in real-time without refresh. 
 
 ---
 
@@ -71,6 +70,7 @@ Features:
   - Displays complete attendance history of the selected employee
   - Includes all past attendance entries
   - Employee-wise attendance tracking and auditing
+  - We can filter by searching for name, date, employee id, etc.
 
 ---
 
