@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3c37eab4.css",
+    "main.js": "/static/js/main.4e836784.js",
+    "static/js/453.54d5a5ed.chunk.js": "/static/js/453.54d5a5ed.chunk.js",
+    "static/media/TTHoves-DemiBold.eot": "/static/media/TTHoves-DemiBold.8feeefd7b077a5902065.eot",
+    "static/media/TTHoves-Bold.eot": "/static/media/TTHoves-Bold.d2fb6909997b06fdfefe.eot",
+    "static/media/TTHoves-DemiBold.ttf": "/static/media/TTHoves-DemiBold.9f88b22cc90533ec5f8a.ttf",
+    "static/media/TTHoves-Bold.ttf": "/static/media/TTHoves-Bold.170a72c0ea1224530434.ttf",
+    "static/media/TTHoves-Regular.eot": "/static/media/TTHoves-Regular.44cde037deea3d2964f9.eot",
+    "static/media/TTHoves-Medium.eot": "/static/media/TTHoves-Medium.ef6a182f97d4e4427640.eot",
+    "static/media/TTHoves-Regular.ttf": "/static/media/TTHoves-Regular.22badb647628141aaacb.ttf",
+    "static/media/TTHoves-Medium.ttf": "/static/media/TTHoves-Medium.c84646119459f89cd0d4.ttf",
+    "static/media/TTHoves-DemiBold.woff": "/static/media/TTHoves-DemiBold.214ebe4771cc7905a018.woff",
+    "static/media/TTHoves-Medium.woff": "/static/media/TTHoves-Medium.ef8091b673986d9ed496.woff",
+    "static/media/TTHoves-Regular.woff": "/static/media/TTHoves-Regular.495bcecc479d22afb699.woff",
+    "static/media/TTHoves-Bold.woff": "/static/media/TTHoves-Bold.0da342373d5b5bdb8a15.woff",
+    "static/media/TTHoves-DemiBold.woff2": "/static/media/TTHoves-DemiBold.b3865664ea62e512aaa3.woff2",
+    "static/media/TTHoves-Medium.woff2": "/static/media/TTHoves-Medium.51cd7342af80b8761920.woff2",
+    "static/media/TTHoves-Bold.woff2": "/static/media/TTHoves-Bold.4b37d9cb0d9fae531e68.woff2",
+    "static/media/TTHoves-Regular.woff2": "/static/media/TTHoves-Regular.2cb6726809285d301e2b.woff2",
+    "index.html": "/index.html",
+    "main.3c37eab4.css.map": "/static/css/main.3c37eab4.css.map",
+    "main.4e836784.js.map": "/static/js/main.4e836784.js.map",
+    "453.54d5a5ed.chunk.js.map": "/static/js/453.54d5a5ed.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c37eab4.css",
+    "static/js/main.4e836784.js"
+  ]
+}
